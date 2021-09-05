@@ -1,35 +1,18 @@
-const birthday = document.querySelector('#birthday')
-const luckynumber = document.querySelector('#luckynumber')
+const luckyDate = document.querySelector('#date')
+const textBox = document.querySelector('#textbox')
 const button = document.querySelector('#button')
-const outputBox = document.querySelector('#outputbox')
+const outputbox = document.querySelector('#outputbox')
 
-
-function comparevalues(sum, luckynumber) {
-
-    if (sum % luckynumber.value === 0) {
-        outputBox.innerText = "Your Birthday is Lucky";
+function luckyBirthdayCheck() {
+    let datedata = luckyDate.value.replaceAll('-', '')
+    var sum = 0;
+    for (i = 0; i < datedata.length; i++)
+        sum = sum + Number(datedata[i])
+    if (sum % textBox.value === 0) {
+        outputbox.innerHTML = 'your birthday is lucky'
     } else {
-        outputBox.innerText = "Sorry, Better Luck Next Birth";
-    }
-}
-
-
-
-
-
-function checkbirthdayislucky() {
-    var dob = birthday.value;
-    var sum = calculateSum(dob)
-    comparevalues(sum, luckynumber)
-}
-
-
-function calculateSum(dob) {
-    dob = dob.replaceAll("-", "")
-    let sum = 0;
-    for (i = 0; i < dob.length; i++) {
-        sum = sum + Number(dob.charAt(i))
+        outputbox.innerHTML = 'wait for re-birth'
     }
     return sum;
 }
-button.addEventListener("click", checkbirthdayislucky)
+button.addEventListener('click', luckyBirthdayCheck)
